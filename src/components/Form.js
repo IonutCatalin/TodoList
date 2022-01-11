@@ -2,18 +2,26 @@ import React from "react";
 
 const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
 	const inputTextHandler = (e) => {
-		console.log(e.target.value);
 		setInputText(e.target.value);
 	};
 
-	const submitTodoHandler = (e) => {
+	async function submitTodoHandler(e) {
 		e.preventDefault();
-		setTodos([
-			...todos,
-			{ text: inputText, completed: false, id: Math.random() * 1000 },
-		]);
+
+		await fetch("http://localhost:3001/todos", {
+			method: "POST",
+			body: JSON.stringify({
+				text: inputText,
+				completed: false,
+				id: Math.max(...todos.map((todo) => todo.id)) + 1,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
 		setInputText("");
-	};
+	}
 
 	const statusHandler = (e) => {
 		setStatus(e.target.value);

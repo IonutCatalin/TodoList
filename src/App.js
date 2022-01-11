@@ -23,28 +23,21 @@ function App() {
 		}
 	};
 
-	useEffect(() => {
-		getLocalTodos();
-	}, []);
+	async function getTodos() {
+		const response = await fetch("http://localhost:3001/todos", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await response.json();
+		setTodos(data);
+	}
 
 	useEffect(() => {
+		getTodos();
 		filterHandler();
-		saveLocalTodos();
 	}, [todos, status]);
-
-	// save to localStorage
-	const saveLocalTodos = () => {
-		localStorage.setItem("todos", JSON.stringify(todos));
-	};
-
-	const getLocalTodos = () => {
-		if (localStorage.getItem("todos") === null) {
-			localStorage.setItem("todos", JSON.stringify([]));
-		} else {
-			let todoLocal = JSON.parse(localStorage.getItem("todos"));
-			setTodos(todoLocal);
-		}
-	};
 
 	return (
 		<div className="App">

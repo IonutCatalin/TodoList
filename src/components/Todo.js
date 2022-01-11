@@ -1,22 +1,23 @@
 import React from "react";
 
 const Todo = ({ todo, text, todos, setTodos }) => {
-	const deleteHandler = () => {
-		setTodos(todos.filter((element) => element.id !== todo.id));
-	};
+	async function deleteTodo() {
+		await fetch(`http://localhost:3001/todos/${todo.id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+	}
 
 	const completeHandler = () => {
-		setTodos(
-			todos.map((item) => {
-				if (item.id === todo.id) {
-					return {
-						...item,
-						completed: !item.completed,
-					};
-				}
-				return item;
-			})
-		);
+		fetch(`http://localhost:3001/todos/${todo.id}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ ...todo, completed: !todo.completed }),
+		});
 	};
 
 	return (
@@ -27,7 +28,7 @@ const Todo = ({ todo, text, todos, setTodos }) => {
 			<button className="complete-btn" onClick={completeHandler}>
 				<i className="fas fa-check"></i>
 			</button>
-			<button className="trash-btn" onClick={deleteHandler}>
+			<button className="trash-btn" onClick={deleteTodo}>
 				<i className="fas fa-trash"></i>
 			</button>
 		</div>

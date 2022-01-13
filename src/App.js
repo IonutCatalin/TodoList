@@ -37,7 +37,7 @@ function App() {
 	useEffect(() => {
 		getTodos();
 		filterHandler();
-	}, [todos, status]);
+	}, [status, todos]);
 
 	return (
 		<div className="App">
@@ -55,6 +55,8 @@ function App() {
 				todos={todos}
 				setTodos={setTodos}
 				filteredTodos={filteredTodos}
+				inputText={inputText}
+				setInputText={setInputText}
 			/>
 		</div>
 	);

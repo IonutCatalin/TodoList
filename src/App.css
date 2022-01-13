@@ -82,9 +82,8 @@ form button:hover {
 .edit-item {
 	padding: 0rem 0.5rem;
 	font-size: 1.5rem;
-	border: none;
 	background: white;
-	color: mediumslateblue;
+	color: rgb(11, 212, 162);
 }
 .edit-btn {
 	background-color: grey;

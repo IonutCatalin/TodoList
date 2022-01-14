@@ -44,6 +44,14 @@ const TodoList = () => {
 		setTodos(todoToBeRemovedIndex);
 	};
 
+	const onTodoComplete = (todo) => {
+		const todoToBeCompletedIndex = todos.findIndex((t) => todo.id === t.id);
+		todos[todoToBeCompletedIndex].completed =
+			!todos[todoToBeCompletedIndex].completed;
+
+		setTodos([...todos]);
+	};
+
 	useEffect(() => {
 		getTodos();
 	}, []);
@@ -65,6 +73,7 @@ const TodoList = () => {
 							todos={todos}
 							todo={todo}
 							onTodoDelete={onTodoDelete}
+							onTodoComplete={onTodoComplete}
 						/>
 					))}
 				</ul>

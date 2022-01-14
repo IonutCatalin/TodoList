@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-const Todo = ({ todo, text, todos, setTodos, onTodoDelete }) => {
+const Todo = ({
+	todo,
+	text,
+	todos,
+	setTodos,
+	onTodoDelete,
+	onTodoComplete,
+}) => {
 	const [editButtonState, setEditButtonState] = useState(false);
 	const [editInputText, setEditInputText] = useState(text);
 
@@ -51,6 +58,9 @@ const Todo = ({ todo, text, todos, setTodos, onTodoDelete }) => {
 			},
 			body: JSON.stringify({ ...todo, completed: !todo.completed }),
 		});
+		console.log("todoid", todo.id);
+		console.log("todo", todo);
+		onTodoComplete(todo);
 	};
 
 	return (

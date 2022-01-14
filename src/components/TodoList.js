@@ -12,6 +12,10 @@ const TodoList = () => {
 		setEditInputText(e.target.value);
 	};
 
+	const statusHandler = (e) => {
+		setStatus(e.target.value);
+	};
+
 	const filterHandler = () => {
 		switch (status) {
 			case "completed":
@@ -69,14 +73,19 @@ const TodoList = () => {
 
 	useEffect(() => {
 		filterHandler();
-	}, [status]);
+	}, [todos, status]);
 
 	return (
 		<>
-			<Form setStatus={setStatus} onTodoAdd={onTodoAdd} />
+			<Form
+				setStatus={setStatus}
+				onTodoAdd={onTodoAdd}
+				status={status}
+				statusHandler={statusHandler}
+			/>
 			<div className="todo-container">
 				<ul className="todo-list">
-					{todos.map((todo) => (
+					{filteredTodos.map((todo) => (
 						<Todo
 							key={todo.id}
 							text={todo.text}

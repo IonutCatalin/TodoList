@@ -25,6 +25,8 @@ const Todo = ({
 
 	const saveHandler = () => {
 		setEditButtonState(false);
+		if (!editInputText) return;
+
 		fetch(`http://localhost:3001/todos/${todo.id}`, {
 			method: "PUT",
 			headers: {

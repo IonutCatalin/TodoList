@@ -2,7 +2,7 @@
   "todos": [
     {
       "text": "1",
-      "completed": false,
+      "completed": true,
       "id": 1
     },
     {
@@ -17,8 +17,13 @@
     },
     {
       "text": "4",
-      "completed": false,
+      "completed": true,
       "id": 4
+    },
+    {
+      "text": "5",
+      "completed": false,
+      "id": 5
     }
   ]
 }

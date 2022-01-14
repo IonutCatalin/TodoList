@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ setStatus, onTodoAdd }) => {
+const Form = ({ statusHandler, onTodoAdd }) => {
 	const [inputText, setInputText] = useState("");
 
 	const inputTextHandler = (e) => {
@@ -21,16 +21,11 @@ const Form = ({ setStatus, onTodoAdd }) => {
 			},
 		});
 		const data = await response.json();
-		console.log(data);
 
 		onTodoAdd(data);
 
 		setInputText("");
 	}
-
-	const statusHandler = (e) => {
-		setStatus(e.target.value);
-	};
 
 	return (
 		<form>

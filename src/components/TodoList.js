@@ -6,7 +6,11 @@ const TodoList = () => {
 	const [todos, setTodos] = useState([]);
 	const [status, setStatus] = useState("all");
 	const [filteredTodos, setFilteredTodos] = useState([]);
-	const [inputText, setInputText] = useState("");
+	const [editInputText, setEditInputText] = useState("");
+
+	const inputTextHandler = (e) => {
+		setEditInputText(e.target.value);
+	};
 
 	const filterHandler = () => {
 		switch (status) {
@@ -31,12 +35,10 @@ const TodoList = () => {
 		});
 		const data = await response.json();
 		setTodos(data);
-		console.log("get la initialiare todos", todos);
 	}
 
 	const onTodoAdd = (todo) => {
 		setTodos([...todos, todo]);
-		console.log("adaugare pe frontend", todos);
 	};
 
 	const onTodoDelete = (todo) => {
@@ -52,22 +54,13 @@ const TodoList = () => {
 		setTodos([...todos]);
 	};
 
-	const onTodoEdit = async (todo) => {
-		const response = await fetch(`http://localhost:3001/todos/${todo.id}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		const data = await response.json();
-
-		console.log("cine e data", data);
+	const onTodoEdit = (todo) => {
 		const todoToBeEditedIndex = todos.findIndex((t) => todo.id === t.id);
-		console.log("text de la todo", todos[todoToBeEditedIndex].text);
-		console.log("todo", todos[todoToBeEditedIndex]);
-		todos[todoToBeEditedIndex].text = data.text;
+		if (!editInputText) return;
+		todos[todoToBeEditedIndex].text = editInputText;
 
 		setTodos([...todos]);
+		setEditInputText("");
 	};
 
 	useEffect(() => {
@@ -87,12 +80,12 @@ const TodoList = () => {
 						<Todo
 							key={todo.id}
 							text={todo.text}
-							setTodos={setTodos}
-							todos={todos}
 							todo={todo}
 							onTodoDelete={onTodoDelete}
 							onTodoComplete={onTodoComplete}
 							onTodoEdit={onTodoEdit}
+							inputTextHandler={inputTextHandler}
+							editInputText={editInputText}
 						/>
 					))}
 				</ul>

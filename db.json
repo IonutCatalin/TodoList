@@ -6,9 +6,9 @@
       "id": 1
     },
     {
-      "text": "2",
       "completed": false,
-      "id": 2
+      "id": 2,
+      "text": "2"
     },
     {
       "text": "3",

@@ -3,18 +3,13 @@ import React, { useState } from "react";
 const Todo = ({
 	todo,
 	text,
-	todos,
-	setTodos,
 	onTodoDelete,
 	onTodoComplete,
 	onTodoEdit,
+	inputTextHandler,
+	editInputText,
 }) => {
 	const [editButtonState, setEditButtonState] = useState(false);
-	const [editInputText, setEditInputText] = useState(text);
-
-	const inputTextHandler = (e) => {
-		setEditInputText(e.target.value);
-	};
 
 	async function deleteTodo() {
 		const response = await fetch(`http://localhost:3001/todos/${todo.id}`, {
@@ -24,16 +19,12 @@ const Todo = ({
 			},
 		});
 		const data = await response.json();
-		console.log("ce e aici", data);
 
 		onTodoDelete(todo.id);
-
-		console.log("dupa stergere in baza de date", todos);
 	}
 
 	const saveHandler = () => {
 		setEditButtonState(false);
-		console.log(todo.id, "edited");
 		fetch(`http://localhost:3001/todos/${todo.id}`, {
 			method: "PUT",
 			headers: {
@@ -41,7 +32,7 @@ const Todo = ({
 			},
 			body: JSON.stringify({
 				...todo,
-				text: editInputText ? editInputText : text,
+				text: editInputText ? editInputText : todo.text,
 			}),
 		});
 
@@ -50,7 +41,6 @@ const Todo = ({
 
 	const editHandler = () => {
 		setEditButtonState(true);
-		console.log(todo.id, "editing");
 	};
 
 	const completeHandler = () => {
@@ -61,8 +51,6 @@ const Todo = ({
 			},
 			body: JSON.stringify({ ...todo, completed: !todo.completed }),
 		});
-		console.log("todoid", todo.id);
-		console.log("todo", todo);
 		onTodoComplete(todo);
 	};
 

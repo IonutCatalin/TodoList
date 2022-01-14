@@ -7,6 +7,7 @@ const Todo = ({
 	setTodos,
 	onTodoDelete,
 	onTodoComplete,
+	onTodoEdit,
 }) => {
 	const [editButtonState, setEditButtonState] = useState(false);
 	const [editInputText, setEditInputText] = useState(text);
@@ -43,6 +44,8 @@ const Todo = ({
 				text: editInputText ? editInputText : text,
 			}),
 		});
+
+		onTodoEdit(todo);
 	};
 
 	const editHandler = () => {

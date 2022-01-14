@@ -52,6 +52,24 @@ const TodoList = () => {
 		setTodos([...todos]);
 	};
 
+	const onTodoEdit = async (todo) => {
+		const response = await fetch(`http://localhost:3001/todos/${todo.id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await response.json();
+
+		console.log("cine e data", data);
+		const todoToBeEditedIndex = todos.findIndex((t) => todo.id === t.id);
+		console.log("text de la todo", todos[todoToBeEditedIndex].text);
+		console.log("todo", todos[todoToBeEditedIndex]);
+		todos[todoToBeEditedIndex].text = data.text;
+
+		setTodos([...todos]);
+	};
+
 	useEffect(() => {
 		getTodos();
 	}, []);
@@ -74,6 +92,7 @@ const TodoList = () => {
 							todo={todo}
 							onTodoDelete={onTodoDelete}
 							onTodoComplete={onTodoComplete}
+							onTodoEdit={onTodoEdit}
 						/>
 					))}
 				</ul>

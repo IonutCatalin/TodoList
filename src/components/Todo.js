@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Todo = ({ todo, text, todos, setTodos }) => {
+const Todo = ({ todo, text, todos, setTodos, onTodoDelete }) => {
 	const [editButtonState, setEditButtonState] = useState(false);
 	const [editInputText, setEditInputText] = useState(text);
 
@@ -9,12 +9,18 @@ const Todo = ({ todo, text, todos, setTodos }) => {
 	};
 
 	async function deleteTodo() {
-		await fetch(`http://localhost:3001/todos/${todo.id}`, {
+		const response = await fetch(`http://localhost:3001/todos/${todo.id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
+		const data = await response.json();
+		console.log("ce e aici", data);
+
+		onTodoDelete(todo.id);
+
+		console.log("dupa stergere in baza de date", todos);
 	}
 
 	const saveHandler = () => {

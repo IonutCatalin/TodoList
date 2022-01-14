@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
+const Form = ({ setStatus, onTodoAdd }) => {
+	const [inputText, setInputText] = useState("");
+
 	const inputTextHandler = (e) => {
 		setInputText(e.target.value);
 	};
@@ -8,17 +10,20 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
 	async function submitTodoHandler(e) {
 		e.preventDefault();
 
-		await fetch("http://localhost:3001/todos", {
+		const response = await fetch("http://localhost:3001/todos", {
 			method: "POST",
 			body: JSON.stringify({
 				text: inputText,
 				completed: false,
-				id: Math.max(...todos.map((todo) => todo.id)) + 1,
 			}),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
+		const data = await response.json();
+		console.log(data);
+
+		onTodoAdd(data);
 
 		setInputText("");
 	}

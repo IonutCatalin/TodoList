@@ -1,29 +1,14 @@
 {
   "todos": [
     {
-      "text": "go to france",
+      "text": "1",
       "completed": false,
-      "id": 4
+      "id": 1
     },
     {
-      "text": "go to portugal",
+      "text": "3",
       "completed": false,
-      "id": 8
-    },
-    {
-      "text": "go to madrid",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "text": "go to paris",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "text": "go to barcelona",
-      "completed": false,
-      "id": 11
+      "id": 17
     }
   ]
 }

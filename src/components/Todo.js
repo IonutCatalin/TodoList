@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Todo = ({
 	todo,
@@ -8,6 +9,7 @@ const Todo = ({
 	onTodoEdit,
 	inputTextHandler,
 	editInputText,
+	viewTodoHandler,
 }) => {
 	const [editButtonState, setEditButtonState] = useState(false);
 
@@ -56,8 +58,15 @@ const Todo = ({
 		onTodoComplete(todo);
 	};
 
+	const viewHandler = () => {
+		viewTodoHandler(todo);
+	};
 	return (
 		<div className="todo">
+			<Link to={`/todos/${todo.id}`} key={todo.id} className="btn btn-primary">
+				<i className="fas fa-eye"></i>
+			</Link>
+
 			{editButtonState ? (
 				<input
 					type="text"

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Form from "./Form";
 import Todo from "./Todo";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TodoList = () => {
 	const [todos, setTodos] = useState([]);
@@ -67,6 +69,10 @@ const TodoList = () => {
 		setEditInputText("");
 	};
 
+	const viewTodoHandler = (todo) => {
+		console.log(todo.id);
+	};
+
 	useEffect(() => {
 		getTodos();
 	}, []);
@@ -77,6 +83,9 @@ const TodoList = () => {
 
 	return (
 		<>
+			<header>
+				<h1>Johnny's Todo List</h1>
+			</header>
 			<Form
 				setStatus={setStatus}
 				onTodoAdd={onTodoAdd}
@@ -95,6 +104,7 @@ const TodoList = () => {
 							onTodoEdit={onTodoEdit}
 							inputTextHandler={inputTextHandler}
 							editInputText={editInputText}
+							viewTodoHandler={viewTodoHandler}
 						/>
 					))}
 				</ul>

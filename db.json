@@ -1,29 +1,24 @@
 {
   "todos": [
     {
-      "text": "1",
+      "text": "do shopping",
       "completed": true,
       "id": 1
     },
     {
       "completed": false,
       "id": 2,
-      "text": "2"
+      "text": "go market"
     },
     {
-      "text": "3",
+      "text": "eat",
       "completed": false,
       "id": 3
     },
     {
-      "text": "4",
+      "text": "sleep",
       "completed": true,
       "id": 4
-    },
-    {
-      "text": "5",
-      "completed": false,
-      "id": 5
     }
   ]
 }

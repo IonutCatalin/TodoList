@@ -15,6 +15,7 @@ const Form = ({ statusHandler, onTodoAdd }) => {
 			body: JSON.stringify({
 				text: inputText,
 				completed: false,
+				reviews: [],
 			}),
 			headers: {
 				"Content-Type": "application/json",

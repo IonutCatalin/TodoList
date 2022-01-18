@@ -93,6 +93,18 @@ form button:hover {
 	padding: 0rem 0.5rem;
 }
 
+.star-rating {
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.star-rating-icon {
+	display: inline-block;
+	margin-right: 0.125rem;
+	color: #bbb7c5;
+	font-size: 0.875rem;
+}
+
 .fa-trash,
 .fa-check {
 	pointer-events: none;

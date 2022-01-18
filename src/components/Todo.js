@@ -14,6 +14,12 @@ const Todo = ({
 	const [editButtonState, setEditButtonState] = useState(false);
 
 	async function deleteTodo() {
+		await fetch(`http://localhost:3001/reviews/?todoID=${todo.id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 		const response = await fetch(`http://localhost:3001/todos/${todo.id}`, {
 			method: "DELETE",
 			headers: {

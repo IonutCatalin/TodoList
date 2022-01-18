@@ -1,40 +1,17 @@
 {
-  "todos": [
+  "todos": [],
+  "reviews": [
     {
-      "text": "wash dishes",
-      "completed": false,
-      "reviews": [
-        {
-          "message": "12311",
-          "rating": "5 stars",
-          "id": 96
-        }
-      ],
+      "message": "aaaa",
+      "rating": "5 stars",
+      "todoID": 1,
       "id": 1
     },
     {
-      "text": "go to",
-      "completed": false,
-      "reviews": [
-        {
-          "message": "bbbbb",
-          "rating": "2 stars",
-          "id": 872
-        }
-      ],
+      "message": "bbbb",
+      "rating": "5 stars",
+      "todoID": 1,
       "id": 2
-    },
-    {
-      "text": "go 2",
-      "completed": false,
-      "reviews": [],
-      "id": 3
-    },
-    {
-      "text": "go 3",
-      "completed": false,
-      "reviews": [],
-      "id": 4
     }
   ]
 }

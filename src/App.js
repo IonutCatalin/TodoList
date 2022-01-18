@@ -3,7 +3,6 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TodoDetails from "./components/TodoDetails";
-import Todo from "./components/Todo";
 function App() {
 	return (
 		<BrowserRouter>
